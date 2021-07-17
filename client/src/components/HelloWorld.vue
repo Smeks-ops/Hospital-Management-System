@@ -1,102 +1,55 @@
+/* eslint-disable semi */ /* eslint-disable */
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+  <div>
+    <h1>Register</h1>
+
+    <input type="email" name="email" v-model="email" placeholder="email" />
+    <br />
+    <input
+      type="password"
+      name="password"
+      v-model="password"
+      placeholder="password"
+    />
+    <br />
+    <button @click="register">
+      Register
+    </button>
   </div>
 </template>
 
 <script>
+import AuthenticationService from "@/services/AuthenticationService";
 export default {
-  name: 'HelloWorld',
-  data () {
+  // eslint-disable-next-line quotes
+
+  // eslint-disable-next-line space-before-function-paren
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      // eslint-disable-next-line quotes
+      email: "",
+      password: ""
+      // eslint-disable-next-line semi
+    };
+  },
+  mounted() {},
+  methods: {
+    async register() {
+      const response = await AuthenticationService.register({
+        email: this.email,
+        password: this.password
+      });
+      console.log(response.data);
     }
   }
-}
+  // eslint-disable-next-line semi
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
